@@ -188,6 +188,7 @@ Plugin can be configured with the following properties set in the `changelog {}`
 | `repositoryUrl`         | The GitHub repository URL used to build release links. If provided, leads to the GitHub comparison page.         | _Type:_ `String?`                      <br/> _Default value:_ `null`                                                               |
 | `outputFile`            | Output file to write the changelog content to when using the `getChangelog` task.                                | _Type:_ `RegularFileProperty`                      <br/> _Default value:_ `null`                                                   |
 | `sectionUrlBuilder`     | Function to build a single URL to link section with the GitHub page to present changes within the given release. | _Type:_ `ChangelogSectionUrlBuilder`   <br/> _Default value:_ Common `ChangelogSectionUrlBuilder` implementation                   |
+| `versionPrefixBuilder`  | Function to get the version prefix used to compare tags for a specific version name.                             | _Type:_ `ChangelogVersionPrefixBuilder` <br/> _Default value:_ Common `ChangelogVersionPrefixBuilder` implementation               |
 
 > **Note**
 >
