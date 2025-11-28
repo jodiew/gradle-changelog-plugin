@@ -46,6 +46,11 @@ class ChangelogPlugin : Plugin<Project> {
                 },
             )
             versionPrefix.convention(project.provider { "v" })
+            versionPrefixBuilder.convention(
+                ChangelogVersionPrefixBuilder { _ ->
+                    versionPrefix.get()
+                },
+            )
 
             version.convention(
                 project.provider {
@@ -87,16 +92,18 @@ class ChangelogPlugin : Plugin<Project> {
             headerInlineLink.convention(false)
             sectionUrlBuilder.convention(
                 ChangelogSectionUrlBuilder { repositoryUrl, currentVersion, previousVersion, isUnreleased ->
-                            val prefix = versionPrefix.get()
+                            val prefix = versionPrefixBuilder.get()
+                            val previousPrefix = prefix.build(previousVersion)
+                            val currentPrefix = prefix.build(currentVersion)
                     repositoryUrl + when {
                                 isUnreleased -> when (previousVersion) {
                                     null -> "/commits"
-                                    else -> "/compare/$prefix$previousVersion...HEAD"
+                                    else -> "/compare/$previousPrefix$previousVersion...HEAD"
                                 }
 
-                                previousVersion == null -> "/commits/$prefix$currentVersion"
+                                previousVersion == null -> "/commits/$currentPrefix$currentVersion"
 
-                                else -> "/compare/$prefix$previousVersion...$prefix$currentVersion"
+                                else -> "/compare/$previousPrefix$previousVersion...$currentPrefix$currentVersion"
                     }
                 },
             )

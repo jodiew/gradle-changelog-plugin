@@ -23,6 +23,14 @@ abstract class ChangelogPluginExtension {
     abstract val versionPrefix: Property<String>
 
     /**
+     * Function to build a version prefix used to compare tags based on the version name.
+     *
+     * Default value: Common [ChangelogVersionPrefixBuilder] implementation
+     */
+    @get:Optional
+    abstract val versionPrefixBuilder: Property<ChangelogVersionPrefixBuilder>
+
+    /**
      * Current version. By default, project's version is used.
      *
      * Default value: `project.version`

@@ -662,6 +662,46 @@ class ChangelogPluginExtensionTest : BaseTest() {
     }
 
     @Test
+    fun `provide a custom versionPrefixBuilder`() {
+        changelog =
+            """
+            # Changelog
+            
+            Foo
+            
+            ## [Unreleased]
+            
+            Not yet released version.
+            
+            ### Added
+            
+            - Zip
+            
+            ## [0.0.2]
+            
+            ### Added
+            
+            - Foo
+            
+            ## [0.0.1]
+            
+            ### Added
+            - Bar
+            """.trimIndent()
+
+        val customRepositoryUrl = "https://github.com/JetBrains/gradle-changelog-plugin"
+
+        extension.repositoryUrl = customRepositoryUrl
+        extension.versionPrefixBuilder = ChangelogVersionPrefixBuilder { version -> if (version == "0.0.2") "v" else "" }
+
+        val items = extension.instance.get().links.values
+
+        assertTrue(items.first().contains("/v0.0.2...HEAD"))
+        assertTrue(items.drop(1).first().contains("/0.0.1...v0.0.2"))
+        assertTrue(items.last().contains("/0.0.1"))
+    }
+
+    @Test
     fun `provide a custom sectionUrlBuilder`() {
         changelog =
             """

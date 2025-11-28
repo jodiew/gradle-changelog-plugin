@@ -52,3 +52,7 @@ fun interface ChangelogSectionUrlBuilder {
 
     fun build(repositoryUrl: String, currentVersion: String?, previousVersion: String?, isUnreleased: Boolean): String
 }
+
+fun interface ChangelogVersionPrefixBuilder {
+    fun build(version: String?): String
+}

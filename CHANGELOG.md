@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+### Added
+
+- Add `versionPrefixBuilder` property to the Changelog extension and `ChangelogVersionPrefixBuilder` functional interface to support tags with different prefixes
+
 ## [2.5.0] - 2025-11-25
 
 ### Added

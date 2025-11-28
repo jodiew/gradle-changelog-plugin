@@ -112,6 +112,7 @@ public abstract class org/jetbrains/changelog/ChangelogPluginExtension {
 	public abstract fun getUnreleasedTerm ()Lorg/gradle/api/provider/Property;
 	public abstract fun getVersion ()Lorg/gradle/api/provider/Property;
 	public abstract fun getVersionPrefix ()Lorg/gradle/api/provider/Property;
+	public abstract fun getVersionPrefixBuilder ()Lorg/gradle/api/provider/Property;
 	public final fun has (Ljava/lang/String;)Z
 	public final fun render (Lorg/jetbrains/changelog/Changelog$OutputType;)Ljava/lang/String;
 	public static synthetic fun render$default (Lorg/jetbrains/changelog/ChangelogPluginExtension;Lorg/jetbrains/changelog/Changelog$OutputType;ILjava/lang/Object;)Ljava/lang/String;
@@ -122,6 +123,10 @@ public abstract class org/jetbrains/changelog/ChangelogPluginExtension {
 public abstract interface class org/jetbrains/changelog/ChangelogSectionUrlBuilder {
 	public abstract fun build (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Z)Ljava/lang/String;
 	public fun getExtraParams ()Ljava/util/Map;
+}
+
+public abstract interface class org/jetbrains/changelog/ChangelogVersionPrefixBuilder {
+	public abstract fun build (Ljava/lang/String;)Ljava/lang/String;
 }
 
 public final class org/jetbrains/changelog/ExtensionsKt {
